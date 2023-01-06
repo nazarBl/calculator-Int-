@@ -1,0 +1,8 @@
+{
+	"window.zoomLevel": 0.2,
+
+	"editor.minimap.enabled": false,
+	"editor.cursorBlinking": "expand",
+
+	"editor.fontSize": 14
+}

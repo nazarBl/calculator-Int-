@@ -1,0 +1,35 @@
+.appWrapper {
+	background-color: lightgray;
+	height: 400px;
+	width: 240px;
+	margin: 10rem auto;
+	padding: 10px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+	justify-content: space-between;
+	place-items: center;
+	box-shadow: 0 0 20px darkslategray;
+
+	border-radius: 10px;
+
+	.input {
+		grid-column: 1/5;
+		width: 220px;
+		height: 40px;
+		padding-right: 5px;
+		background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+
+		border: none;
+		border-radius: 5px;
+
+		font-size: 24px;
+		text-align: end;
+		caret-color: transparent;
+		cursor: default;
+		&:focus {
+			outline: none;
+		}
+	}
+}
