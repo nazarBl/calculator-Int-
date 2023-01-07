@@ -11,8 +11,8 @@ const App = () => {
 	const [secondOperand, setSecondOperand] = useState('');
 	const [operation, setOperation] = useState('cleared');
 	const [result, setResult] = useState('');
+	const [displayValue, setDisplayValue] = useState('0')
 
-	const inputRef = useRef();
 	useEffect(() => {
 		console.log(`Operation:${operation}`);
 		console.log(`First operand:${firstOperand}`);
@@ -20,22 +20,22 @@ const App = () => {
 		console.log('------------------------------');
 
 		if (operation === 'cleared' && !firstOperand) {
-			inputRef.current.value = '0';
+						setDisplayValue('0')
 		} else if (!secondOperand && firstOperand) {
-			inputRef.current.value = firstOperand;
+			setDisplayValue(firstOperand);
 		} else if (secondOperand && operation !== 'equals') {
-			inputRef.current.value = secondOperand;
+			setDisplayValue(secondOperand);
 			setResult('');
 		} else if (operation === 'equals') {
-			inputRef.current.value = result;
+			setDisplayValue(result);
 		} else {
-			inputRef.current.value = 'error';
+			setDisplayValue('error');
 		}
-	}, [operation, firstOperand, secondOperand, result]);
+	}, [operation, firstOperand, secondOperand, result,displayValue]);
 
 	return (
 		<div className={style.appWrapper}>
-			<input className={style.input} value="0" ref={inputRef}></input>
+			<div className={style.displayBlock}>{displayValue}</div>
 
 			{buttons.map((el, index) => {
 				return (
@@ -51,7 +51,7 @@ const App = () => {
 						secondOperand={secondOperand}
 						setResult={setResult}
 						result={result}
-						inputRef={inputRef}
+						
 					/>
 				);
 			})}

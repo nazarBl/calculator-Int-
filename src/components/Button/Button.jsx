@@ -12,10 +12,8 @@ const Button = ({
 	setSecondOperand,
 	firstOperand,
 	secondOperand,
-	result,
 	setResult,
-	inputRef,
-}) => {
+	}) => {
 	const onOperationButtonClick = (value) => {
 		switch (value) {
 			case 'cleared':
@@ -24,7 +22,7 @@ const Button = ({
 				setOperation(value);
 				break;
 			case 'erase':
-				console.log(inputRef.current.value);
+
 				break;
 			case 'equals':
 				switch (operation) {

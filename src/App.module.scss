@@ -14,7 +14,7 @@
 
 	border-radius: 10px;
 
-	.input {
+	.displayBlock {
 		grid-column: 1/5;
 		width: 220px;
 		height: 40px;
@@ -23,9 +23,13 @@
 
 		border: none;
 		border-radius: 5px;
+	
 
 		font-size: 24px;
+		line-height: 40px;
 		text-align: end;
+		
+		font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 		caret-color: transparent;
 		cursor: default;
 		&:focus {
