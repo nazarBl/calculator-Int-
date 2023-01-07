@@ -47,6 +47,7 @@ const Button = ({
 						setResult('');
 						setResult(Number(firstOperand) * Number(secondOperand));
 						break;
+					
 						default:
 							console.log('Wrong operation');
 							break;
@@ -94,7 +95,8 @@ const Button = ({
 		case '8':
 		case '9':
 		case '0':
-		case '00': {
+		case '00':
+		case ',': {
 			return (
 				<div className={style.button} onClick={() => onNumButtonClick(value)}>
 					{icon}
@@ -106,7 +108,7 @@ const Button = ({
 		case '+':
 		case '-':
 		case '%':
-		case ',':
+		
 		case '=': {
 			return (
 				<div

@@ -17,7 +17,7 @@ const buttons = [
 	{ value: 'plus', icon: '+' },
 	{ value: '00', icon: '00' },
 	{ value: '0', icon: '0' },
-	{ value: 'comma', icon: ',' },
+	{ value: '.', icon: ',' },
 	{ value: 'equals', icon: '=' },
 ];
 
