@@ -25,7 +25,7 @@ const Button = ({
 				break;
 			case 'erase':
 				console.log(inputRef.current.value);
-
+				break;
 			case 'equals':
 				switch (operation) {
 					case 'plus':
@@ -46,12 +46,12 @@ const Button = ({
 					case 'multiply':
 						setResult('');
 						setResult(Number(firstOperand) * Number(secondOperand));
-
 						break;
-
-					default:
-						break;
+						default:
+							console.log('Wrong operation');
+							break;
 				}
+		
 			default:
 				setOperation(value);
 		}
@@ -62,17 +62,22 @@ const Button = ({
 			case 'cleared':
 				if (!firstOperand && value !== '0' && value !== '00') {
 					setFirstOperand(value);
-				} else if (value === '0' || value === '00') {
+				} else if ((value === '0' || value === '00')&&!firstOperand) {
 					setFirstOperand('');
 				} else {
 					setFirstOperand((prev) => prev + value);
 				}
 				break;
 			default:
-				if (value === '0' || value === '00') {
-					setSecondOperand('0');
+				if(secondOperand&&secondOperand!=='0'){
+					setSecondOperand(prev=>prev+value);
+					
+				}else if(value==='0'||value==='00'){
+					setSecondOperand('0')
+					
 				} else {
-					setSecondOperand((prev) => prev + value);
+					setSecondOperand(value);
+					
 				}
 				break;
 		}
