@@ -13,7 +13,7 @@ const Button = ({
 	firstOperand,
 	secondOperand,
 	setResult,
-	}) => {
+}) => {
 	const onOperationButtonClick = (value) => {
 		switch (value) {
 			case 'cleared':
@@ -22,7 +22,6 @@ const Button = ({
 				setOperation(value);
 				break;
 			case 'erase':
-
 				break;
 			case 'equals':
 				switch (operation) {
@@ -45,38 +44,54 @@ const Button = ({
 						setResult('');
 						setResult(Number(firstOperand) * Number(secondOperand));
 						break;
-					
-						default:
-							console.log('Wrong operation');
-							break;
+
+					default:
+						console.log('Wrong operation');
+						break;
 				}
-		
+
 			default:
 				setOperation(value);
+				break;
 		}
 	};
 
 	const onNumButtonClick = (value) => {
 		switch (operation) {
 			case 'cleared':
-				if (!firstOperand && value !== '0' && value !== '00') {
-					setFirstOperand(value);
-				} else if ((value === '0' || value === '00')&&!firstOperand) {
-					setFirstOperand('');
-				} else {
-					setFirstOperand((prev) => prev + value);
+				switch (value) {
+					case '.':
+						if (firstOperand && !firstOperand.includes('.')) {
+							setFirstOperand((prev) => prev + '.');
+						} else if (!firstOperand) {
+							setFirstOperand('0.');
+						}
+						break;
+					default:
+						if (!firstOperand && value !== '0' && value !== '00') {
+							setFirstOperand(value);
+						} else if ((value === '0' || value === '00') && !firstOperand) {
+							setFirstOperand('');
+						} else if (firstOperand) {
+							setFirstOperand((prev) => prev + value);
+						}
 				}
 				break;
 			default:
-				if(secondOperand&&secondOperand!=='0'){
-					setSecondOperand(prev=>prev+value);
-					
-				}else if(value==='0'||value==='00'){
-					setSecondOperand('0')
-					
+				if (secondOperand && secondOperand !== '0') {
+					if (!secondOperand.includes('.')) {
+						setSecondOperand((prev) => prev + value);
+					} else if (secondOperand !== '0' && value === '.') {
+						setSecondOperand((prev) => prev);
+					} else {
+						setSecondOperand((prev) => prev + value);
+					}
+				} else if (value === '0' || value === '00') {
+					setSecondOperand('0');
+				} else if (secondOperand === '' && value === '.') {
+					setSecondOperand('0.');
 				} else {
 					setSecondOperand(value);
-					
 				}
 				break;
 		}
@@ -106,7 +121,7 @@ const Button = ({
 		case '+':
 		case '-':
 		case '%':
-		
+
 		case '=': {
 			return (
 				<div

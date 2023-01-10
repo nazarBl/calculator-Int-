@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import style from './App.module.scss';
 
@@ -11,7 +11,7 @@ const App = () => {
 	const [secondOperand, setSecondOperand] = useState('');
 	const [operation, setOperation] = useState('cleared');
 	const [result, setResult] = useState('');
-	const [displayValue, setDisplayValue] = useState('0')
+	const [displayValue, setDisplayValue] = useState('0');
 
 	useEffect(() => {
 		console.log(`Operation:${operation}`);
@@ -20,7 +20,7 @@ const App = () => {
 		console.log('------------------------------');
 
 		if (operation === 'cleared' && !firstOperand) {
-						setDisplayValue('0')
+			setDisplayValue('0');
 		} else if (!secondOperand && firstOperand) {
 			setDisplayValue(firstOperand);
 		} else if (secondOperand && operation !== 'equals') {
@@ -31,7 +31,7 @@ const App = () => {
 		} else {
 			setDisplayValue('error');
 		}
-	}, [operation, firstOperand, secondOperand, result,displayValue]);
+	}, [operation, firstOperand, secondOperand, result, displayValue]);
 
 	return (
 		<div className={style.appWrapper}>
@@ -51,7 +51,7 @@ const App = () => {
 						secondOperand={secondOperand}
 						setResult={setResult}
 						result={result}
-						
+						displayValue={displayValue}
 					/>
 				);
 			})}
