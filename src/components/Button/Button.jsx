@@ -14,14 +14,23 @@ const Button = ({
 	secondOperand,
 	setResult,
 }) => {
+	const onEraseButtonClick = () => {
+		if (firstOperand && !secondOperand && operation === 'cleared') {
+			firstOperand = firstOperand.split('');
+			let erase = firstOperand.pop();
+			return setFirstOperand(firstOperand.join(''));
+		} else if (operation && secondOperand) {
+			secondOperand = secondOperand.split('');
+			let erase = secondOperand.pop();
+			return setSecondOperand(secondOperand.join(''));
+		}
+	};
 	const onOperationButtonClick = (value) => {
 		switch (value) {
 			case 'cleared':
 				setFirstOperand('');
 				setSecondOperand('');
 				setOperation(value);
-				break;
-			case 'erase':
 				break;
 			case 'equals':
 				switch (operation) {
@@ -58,6 +67,9 @@ const Button = ({
 
 	const onNumButtonClick = (value) => {
 		switch (operation) {
+			case 'erase':
+				if (secondOperand) {
+				}
 			case 'cleared':
 				switch (value) {
 					case '.':
@@ -145,10 +157,7 @@ const Button = ({
 		}
 		case 'arrowDelete': {
 			return (
-				<div
-					className={style.orangeButton}
-					onClick={() => onOperationButtonClick(value)}
-				>
+				<div className={style.orangeButton} onClick={onEraseButtonClick}>
 					<img src={arrowDelete} alt="arrowDelete" />
 				</div>
 			);
