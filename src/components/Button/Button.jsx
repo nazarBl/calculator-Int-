@@ -60,6 +60,10 @@ const Button = ({
 				}
 
 			default:
+				if (operation === 'equals') {
+					setSecondOperand('');
+				}
+
 				setOperation(value);
 				break;
 		}
