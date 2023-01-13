@@ -25,6 +25,11 @@ const Button = ({
 			return setSecondOperand(secondOperand.join(''));
 		}
 	};
+
+	const onPercentButtonClick = () => {
+		setOperation('percent');
+	};
+
 	const onOperationButtonClick = (value) => {
 		switch (value) {
 			case 'cleared':
@@ -53,6 +58,14 @@ const Button = ({
 						setResult('');
 						setResult(Number(firstOperand) * Number(secondOperand));
 						break;
+					case 'percent':
+						setResult('');
+						if (!secondOperand) {
+							setFirstOperand((prev) => prev / 100);
+							setResult(firstOperand);
+						} else if (secondOperand && operation === 'percent') {
+							setResult((Number(firstOperand) / 100) * secondOperand);
+						}
 
 					default:
 						console.log('Wrong operation');
@@ -114,6 +127,7 @@ const Button = ({
 	};
 
 	switch (icon) {
+		//NUMBER BUTTONS
 		case '1':
 		case '2':
 		case '3':
@@ -132,16 +146,16 @@ const Button = ({
 				</div>
 			);
 		}
+		//OPERATION BUTTONS
 		case 'C':
 		case '/':
 		case '+':
 		case '-':
-		case '%':
-
-		case '=': {
+		case '=':
+		case 'percent': {
 			return (
 				<div
-					className={style.orangeButton}
+					className={style.operationButton}
 					onClick={() => onOperationButtonClick(value)}
 				>
 					{icon}
@@ -150,7 +164,7 @@ const Button = ({
 		}
 		case 'multiply': {
 			return (
-				<div className={style.orangeButton}>
+				<div className={style.operationButton}>
 					<img
 						src={multiply}
 						alt="mulitply"
@@ -161,8 +175,15 @@ const Button = ({
 		}
 		case 'arrowDelete': {
 			return (
-				<div className={style.orangeButton} onClick={onEraseButtonClick}>
+				<div className={style.operationButton} onClick={onEraseButtonClick}>
 					<img src={arrowDelete} alt="arrowDelete" />
+				</div>
+			);
+		}
+		case '%': {
+			return (
+				<div className={style.operationButton} onClick={onPercentButtonClick}>
+					{icon}
 				</div>
 			);
 		}
